@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">EnergyDroid</string>
+    <string name="menu_config">Config</string>
+</resources>

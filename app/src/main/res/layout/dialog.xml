@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Client Config"
+        android:id="@+id/textView"
+        android:textSize="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Server IP:"
+        android:id="@+id/textView2"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:textSize="15dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editServerIP"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:layout_marginRight="4dp"
+        android:textSize="15dp"
+        android:text="192.168.0.1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Port:"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/editServerIP"
+        android:layout_alignLeft="@+id/editServerIP"
+        android:layout_alignStart="@+id/editServerIP"
+        android:textSize="15dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editServerPort"
+        android:inputType="number"
+
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginRight="4dp"
+        android:textSize="15dp"
+        android:text="49555" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Request delay (Milisec):"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editServerPort"
+        android:layout_alignLeft="@+id/editServerPort"
+        android:layout_alignStart="@+id/editServerPort"
+        android:textSize="15dp" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextRequestDelay"
+        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_marginRight="4dp"
+        android:layout_alignStart="@+id/textView4"
+        android:inputType="number"
+        android:text="5"
+        android:textSize="15dp" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply"
+        android:inputType="number"
+        android:id="@+id/buttonApply"
+        android:textSize="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/editTextRequestDelay" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="URL (deprecate):"
+        android:id="@+id/textView5"
+        android:layout_below="@+id/editTextRequestDelay"
+        android:layout_alignLeft="@+id/editTextRequestDelay"
+        android:layout_alignStart="@+id/editTextRequestDelay" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextServerURL"
+        android:layout_below="@+id/textView5"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Packages per Request"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/editTextServerURL"
+        android:layout_alignLeft="@+id/editTextServerURL"
+        android:layout_alignStart="@+id/editTextServerURL" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTextPackagePerRequest"
+        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Service Mode"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/editTextPackagePerRequest"
+        android:layout_alignStart="@+id/editTextPackagePerRequest" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView7"
+        android:layout_alignStart="@+id/textView7"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Normal Service"
+            android:id="@+id/radioButton"
+            android:checked="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IntentService"
+            android:id="@+id/radioButton2"
+            android:checked="false"
+            android:layout_below="@+id/textView7"
+            android:layout_toEndOf="@+id/radioGroup" />
+    </RadioGroup>
+
+
+</RelativeLayout>

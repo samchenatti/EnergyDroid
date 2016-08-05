@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="eac.energylib">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+
+        <receiver android:name=".SocketHolder$Receiver" >
+            <intent-filter>
+                <action android:name="RELEASE_BUCKET" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

@@ -1,0 +1,20 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:background="@drawable/centered"
+    android:id="@+id/background">
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switchAlarm"
+        android:checked="false"
+        android:text="Start Service"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_marginLeft="256dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
