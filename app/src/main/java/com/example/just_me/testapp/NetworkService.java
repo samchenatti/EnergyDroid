@@ -133,7 +133,7 @@ public class NetworkService extends Service{
                 }
 
                 //Connects the socket
-                s.connect((SocketAddress) new InetSocketAddress("10.42.0.1", 9999));
+                s.connect((SocketAddress) new InetSocketAddress(serverIP, serverPort));
                 Log.v("AsyncTaskLog", "Trying the connection to " + serverIP + ":" + serverPort);
 
 
