@@ -40,6 +40,7 @@ public class NetworkService extends Service{
     private int serverPort;
     private int requestsPerService;
     private int requestDelay;
+    private String socketType;
 
     @Override
     public IBinder onBind(Intent arg0){
@@ -72,7 +73,7 @@ public class NetworkService extends Service{
 
         /*A small hack that allows the app to schedule the next call to the service on an exact
          moment*/
-        //setNext();
+        setNext();
         return START_NOT_STICKY;
     }
 
@@ -111,6 +112,9 @@ public class NetworkService extends Service{
         serverPort = settings.getInt("serverPort", 49555);
         requestDelay = settings.getInt("requestDelay", 1000);
         requestsPerService = settings.getInt("requestsPerService", 1);
+        socketType = settings.getString("socketType", "econo");
+
+        Log.v("config", socketType);
     }
 
     public class ServerRequest extends AsyncTask<Void, Void, Void>{
@@ -119,30 +123,36 @@ public class NetworkService extends Service{
             Log.v("AsyncTaskLog", "On thread " + this.toString());
             try {
                 //Creates the socket
-                //Socket s = (eacSocket) ? new EnergySocket("App1") : new Socket();
-                //EnergySocket s = new EnergySocket("App1");
+                Socket s;
 
-                Socket s = new Socket();
+
+                if (socketType.equals("econo")){
+                    s = new EnergySocket("App1");
+                }else{
+                    s = new Socket();
+                }
 
                 //Connects the socket
-                s.connect((SocketAddress) new InetSocketAddress(InetAddress.getByName("google.com"), serverPort));
+                s.connect((SocketAddress) new InetSocketAddress("10.42.0.1", 9999));
                 Log.v("AsyncTaskLog", "Trying the connection to " + serverIP + ":" + serverPort);
 
-                /*
+
                 //Sends the request string (http protocol) to the remote server
                 PrintWriter pw = new PrintWriter(s.getOutputStream());
                 pw.print("APP1......................................");
                 pw.flush();
                 Log.v("AsyncTaskLog", "Sent the request");
-                */
+
 
                 /*This was the request message before we began to use a dedicated server*/
                 //Makes the request to a remote server
+                /*
                 PrintWriter pw = new PrintWriter(s.getOutputStream());
                 pw.print("GET / HTTP/1.1\r\n");
                 pw.print("Host: google.com\r\n\r\n");
                 pw.flush();
                 Log.v("AsyncTaskLog", "Sent the request");
+                */
 
                 //Creates a buffer to read data from socket
                 BufferedReader br = new BufferedReader(new InputStreamReader(s.getInputStream()));

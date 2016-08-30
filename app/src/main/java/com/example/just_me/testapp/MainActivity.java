@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private int serverPort;
     private int requestDelay;
     private int requestsPerService;
+    private String socketType;
     private String serverURL;
     private TextView textView;
     private PendingIntent pendingIntent;
@@ -74,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
         final EditText editTextPackagePerRequest;
         final EditText editTextServerURL;
         final AlertDialog dialog;
+        final RadioGroup radioGroup;
+
         Button buttonApply;
 
         //Build an inflater and inflates the dialog
@@ -89,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
         editTextRequestDelay = (EditText) dialoglayout.findViewById(R.id.editTextRequestDelay);
         editTextPackagePerRequest = (EditText) dialoglayout.findViewById(R.id.editTextPackagePerRequest);
         editTextServerURL = (EditText) dialoglayout.findViewById(R.id.editTextServerURL);
+        radioGroup = (RadioGroup) dialoglayout.findViewById(R.id.radioGroup);
+
 
         editTextRequestDelay.setText(Integer.toString(requestDelay), TextView.BufferType.EDITABLE);
         editTextPackagePerRequest.setText(Integer.toString(requestsPerService), TextView.BufferType.EDITABLE);
@@ -109,6 +117,17 @@ public class MainActivity extends AppCompatActivity {
                 requestDelay = Integer.parseInt((editTextRequestDelay.getText().toString()));
                 requestsPerService = Integer.parseInt((editTextPackagePerRequest).getText().toString());
                 serverURL = editTextServerURL.getText().toString();
+
+                switch(radioGroup.getCheckedRadioButtonId()){
+                    case R.id.radioButtonEcono:
+                        socketType = "econo";
+                        Log.v("teste", "econo");
+                        break;
+                    case R.id.radioButtonStand:
+                        Log.v("teste", "stand");
+                        socketType = "stand";
+                        break;
+                }
 
                 editTextRequestDelay.setText(Integer.toString(requestDelay), TextView.BufferType.EDITABLE);
                 editTextServerPort.setText(Integer.toString(serverPort), TextView.BufferType.EDITABLE);
@@ -148,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("serverIP", serverIP);
         editor.putString("serverURL", serverURL);
+        editor.putString("socketType", socketType);
         editor.putInt("serverPort", serverPort);
         editor.putInt("requestDelay", requestDelay);
         editor.putInt("requestsPerService", requestsPerService);
@@ -157,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //Schedule an exact alarm. The subsequent alarms are schedule through app service
+    //Schedule an inexact alarm. The subsequent alarms are schedule through app service
     private void startAlarm(){
         Toast.makeText(this, "STARTED", Toast.LENGTH_SHORT).show();
         Intent alarmIntent = new Intent(MainActivity.this, Receiver.class);
@@ -166,7 +186,9 @@ public class MainActivity extends AppCompatActivity {
 
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + requestDelay, pendingIntent);
+        //alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 100000, pendingIntent);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 10000, pendingIntent);
+
     }
 
     /*Cancel the alarm, if the service is running*/

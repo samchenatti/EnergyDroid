@@ -1664,8 +1664,8 @@ containing a value of this type.
         public static final int progress_circular=0x7f0c0005;
         public static final int progress_horizontal=0x7f0c0006;
         public static final int radio=0x7f0c003b;
-        public static final int radioButton=0x7f0c0060;
-        public static final int radioButton2=0x7f0c0061;
+        public static final int radioButtonEcono=0x7f0c0060;
+        public static final int radioButtonStand=0x7f0c0061;
         public static final int radioGroup=0x7f0c005f;
         public static final int screen=0x7f0c0014;
         public static final int scrollIndicatorDown=0x7f0c0035;
